@@ -1,0 +1,67 @@
+LOGCAT
+
+Level	Use
+Log.d	Debug (most common)
+Log.i	Info
+Log.w	Warning
+Log.e	Error
+Log.f   Fatal
+
+
+
+package com.example.demo;
+
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import android.widget.EditText;
+import android.widget.Button;
+import android.widget.Toast;
+import android.util.Log;
+
+
+
+public class MainActivity extends AppCompatActivity {
+    private EditText username;
+    private EditText password;
+    private Button buttonClear;
+    private static final String TAG = "MainActivity";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        Log.d(TAG, "onCreate: App started");
+        username = findViewById((R.id.editTextText));
+        password = findViewById((R.id.editTextTextPassword));
+        buttonClear = findViewById(R.id.buttonClear);
+
+        buttonClear.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                Log.d(TAG, "Clear button clicked");
+                Toast t = Toast.makeText(getApplicationContext(), "Cleared", Toast.LENGTH_LONG);
+                t.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+                t.show();
+            } //NOT CENTER HORIZONTALLY
+
+        });
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+    }
+    public void clearFields(View view){
+        username.setText("");
+        password.setText("");
+    }
+}
+
+View->Tool Window->Logcat
+Set Level is:debug 

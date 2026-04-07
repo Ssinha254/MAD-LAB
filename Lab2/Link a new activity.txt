@@ -1,0 +1,96 @@
+Link a new activity 
+Core idea (remember this)
+
+One screen = One Activity
+
+So:
+
+Screen 1 → MainActivity
+
+Screen 2 (Calculator) → CalculatorActivity
+
+ Create a new Activity (Calculator screen)
+In Android Studio
+
+Right-click app → New
+
+Activity → Empty Views Activity
+
+Name it: CalculatorActivity
+
+Finish
+
+Android Studio will create:
+
+CalculatorActivity.java
+
+activity_calculator.xml
+
+ Design the Calculator UI (XML)
+
+activity_calculator.xml
+Add a Button in your activity_main.xml:
+Add a Button in your activity_main.xml:
+
+<Button
+    android:id="@+id/btnCalculator"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Open Calculator"/>
+Connect screens using Intent (MOST IMPORTANT STEP) inside onCreate
+Views are created only after setContentView()
+import android.content.Intent;
+findViewById() works only inside/onCreate or later
+MainActivity.java
+Button btn = findViewById(R.id.btnCalculator);
+
+btn.setOnClickListener(v -> {
+    Intent i = new Intent(MainActivity.this, CalculatorActivity.class);
+    startActivity(i);
+});
+Register the new Activity (if needed)
+Intent = intention / message to Android
+Intent is an object used to request an action from another component in Android.
+Check AndroidManifest.xml:
+
+<activity android:name=".CalculatorActivity"/>
+
+v = the View that was clicked
+new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+    }
+};
+setOnClickListener ATTACHES the click handler
+onClick RUNS when the click happens
+MainActivity.this
+
+Current screen (source activity)
+
+this alone refers to the OnClickListener
+
+So we explicitly say MainActivity.this
+
+ CalculatorActivity.class
+
+Destination screen
+
+.class gives the class reference
+
+Tells Android which activity to open
+btnCalculator.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+
+        Intent intent = new Intent(MainActivity.this, CalculatorActivity.class);
+        startActivity(intent);
+
+    }
+});
+new View.OnClickListener() creates an anonymous class object to handle click even onClick() → method called when clickedOnClickListener is an interface
+
+Interfaces cannot be used directly
+
+So we create an anonymous object that implements it
+
+View v → the view that was clicked

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1">
+
+        <TableRow android:background="#777777">
+            <TextView
+                android:text="Hello TableLayout"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:padding="8dp"
+                android:layout_span="2"/>
+
+        </TableRow>
+
+        <!-- Open -->
+        <TableRow>
+            <TextView
+                android:text="Open..."
+                android:padding="8dp"/>
+
+            <TextView
+                android:text="Ctrl+O"
+                android:gravity="end"
+                android:padding="8dp"/>
+
+        </TableRow>
+
+        <!-- Save -->
+        <TableRow>
+            <TextView
+                android:text="Save..."
+                android:padding="8dp"/>
+
+            <TextView
+                android:text="Ctrl+S"
+                android:gravity="end"
+                android:padding="8dp"/>
+        </TableRow>
+
+        <!-- Save As -->
+        <TableRow>
+            <TextView
+                android:text="Save As..."
+                android:padding="8dp"/>
+
+            <TextView
+                android:text="Ctrl+Shift+S"
+                android:gravity="end"
+                android:padding="8dp"/>
+        </TableRow>
+
+        <!-- Import -->
+        <TableRow>
+            <TextView
+                android:text="Import..."
+                android:padding="8dp"/>
+
+            <TextView
+                android:text=""
+                android:padding="8dp"/>
+        </TableRow>
+
+        <!-- Export -->
+        <TableRow>
+            <TextView
+                android:text="Export..."
+                android:padding="8dp"/>
+
+            <TextView
+                android:text="Ctrl+E"
+                android:gravity="end"
+                android:padding="8dp"/>
+        </TableRow>
+
+        <!-- Quit -->
+        <TableRow>
+            <TextView
+                android:text="Quit"
+                android:padding="8dp"/>
+
+            <TextView
+                android:text=""
+                android:padding="8dp"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

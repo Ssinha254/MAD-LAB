@@ -1,0 +1,483 @@
+ViewPager is an Android UI component that lets users swipe left and right between screens (pages).
+
+Think of it like:
+
+Instagram stories
+
+Tabs you can swipe between
+
+Pages in a book 
+
+Each swipe shows a new Fragment.
+Example use cases:
+
+Tabs (Home / Profile / Settings)
+
+Onboarding screens
+
+Image sliders
+
+An Adapter is the middleman.
+
+ It tells the ViewPager:
+
+How many pages there are
+
+What Fragment to show for each page
+
+Without an adapter, ViewPager has no idea what to display.
+
+Think of it like:
+
+ViewPager = bookshelf
+Adapter = librarian who brings the right book for each shelf
+What is FragmentPagerAdapter?
+
+FragmentPagerAdapter is a special adapter made for ViewPager that works with Fragments.
+
+It:
+
+Creates fragments
+
+Keeps them in memory (good for small number of pages)
+
+ Note: In newer Android versions, this is replaced by
+ViewPager2 + FragmentStateAdapter
+What is TabFragment?
+
+That’s your custom Fragment.
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
+Now in the java file create a string array and store the values you want to display in the list. Also, create an object of ListView class. In onCreate()  method find ListView by id using findViewById() method. Create an object of ArrayAdapter using a new keyword followed by a constructor call.
+
+The ArrayAdaptor public constructor description is below:
+
+public ArrayAdapter (Context context, int Resource, T[ ] objects)
+Parameters:
+context : current context
+Resource: resource ID for a layout file
+objects: objects to display in the ListView
+According to this pass the argument in ArrayAdapter Constructor and create an object. At last, conjoin the adapter with the list using setAdapter() method.
+🚨 What’s wrong
+
+Your MainActivity is declared as:
+
+package com.maverick.lab_3;
+
+
+But Android is trying to launch:
+
+com.maverick.myapplication.MainActivity
+
+
+So at runtime Android goes:
+
+“Looking for com.maverick.myapplication.MainActivity…
+Found nothing. Crash.”
+
+✅ Two correct ways to fix it (pick ONE)
+🟢 Option 1 — Change the package of MainActivity (most common)
+
+Update MainActivity.kt to:
+
+package com.maverick.myapplication
+
+
+✔ Easiest
+✔ Clean
+✔ Best if this is a small project
+
+Then:
+
+Build → Clean Project
+Build → Rebuild Project
+
+Break it down:
+
+@ → tells Android “this is a resource”
+
++ → create a new ID
+
+id → resource type
+
+listView → name of the ID
+
+📌 Meaning:
+
+“Create an ID called listView”
+
+Then in Java:
+
+ListView listView = findViewById(R.id.listView);
+
+
+➡ This connects XML view to Java code.
+
+🔁 Without an ID, Java cannot access the view.
+
+2️⃣ android.R.layout.simple_list_item_1 — what is this?
+android.R.layout.simple_list_item_1
+
+
+This is a built-in layout provided by Android.
+
+What does it contain?
+
+✔ One TextView
+✔ Shows one line of text per row
+
+📌 Used when:
+
+Your list items are simple text
+
+🔁 Can it be changed?
+
+YES ✅
+
+Other built-in layouts:
+Layout	Description
+simple_list_item_1	One TextView
+simple_list_item_2	Two TextViews
+simple_list_item_checked	With checkbox
+simple_list_item_single_choice	Radio button
+simple_list_item_multiple_choice	Multiple choice
+Custom layout?
+
+You can create your own XML layout and use it instead.
+
+3️⃣ What is an Adapter?
+
+🧠 Adapter = bridge between data and UI
+
+Data (Array / List)
+        ↓
+      Adapter
+        ↓
+     ListView / Spinner
+
+
+Example:
+
+String[] sports = {"Cricket", "Football"};
+
+
+Adapter converts this data into views that ListView can show.
+
+4️⃣ What is AdapterView?
+
+📌 AdapterView is a parent class.
+
+Examples of AdapterView:
+
+ListView
+
+Spinner
+
+GridView
+
+So:
+
+ListView IS-A AdapterView
+Spinner IS-A AdapterView
+
+
+👉 That’s why you see:
+
+AdapterView.OnItemClickListener
+
+
+Because ListView belongs to AdapterView family.
+
+5️⃣ Difference: Array vs Adapter
+Array	Adapter
+Stores data	Displays data
+Example: String[]	Example: ArrayAdapter
+No UI	Connects data to UI
+
+📌 Array alone cannot show anything on screen.
+
+6️⃣ setOnItemClickListener — how does it work?
+listView.setOnItemClickListener(
+    new AdapterView.OnItemClickListener() {
+
+
+This means:
+
+“When user clicks an item, tell me which one.”
+
+onItemClick() parameters explained
+onItemClick(AdapterView<?> parent,
+            View view,
+            int position,
+            long id)
+
+What are these?
+Parameter	Type	Meaning
+parent	AdapterView<?>	The ListView
+view	View	Clicked row
+position	int	Index (0,1,2…)
+id	long	Row ID
+
+📌 MOST IMPORTANT:
+
+sports[position]
+
+
+➡ Gets the clicked item.
+
+Difference: setItem() vs onItemClick()
+
+👉 There is no setItem()
+
+Maybe you meant:
+
+Method	Purpose
+setAdapter()	Sets data
+onItemClick()	Handles click
+7️⃣ What datatype are they?
+Variable	Datatype
+sports	String[]
+adapter	ArrayAdapter<String>
+listView	ListView
+position	int
+selected item	String
+8️⃣ What is a Spinner?
+
+🌀 Spinner = Dropdown list
+
+📌 Looks like:
+
+Select Sport ▼
+
+
+When clicked:
+
+Cricket
+Football
+Hockey
+
+Difference: ListView vs Spinner
+ListView	Spinner
+Always visible	Dropdown
+Takes more space	Saves space
+Scroll list	Tap to open
+
+📌 Spinner also uses:
+
+ArrayAdapter
+
+OnItemSelectedListener
+📌 TabLayout does NOT work alone
+📌 It always works with ViewPager
+Each Tab = One Fragment
+Swipable content below
+
+What is a ViewPager? (VERY SIMPLE)
+
+👉 ViewPager = screen slider
+
+It allows the user to:
+
+Swipe left / right
+
+Move between full screens (pages)
+What is a Fragment? (VERY SIMPLE)
+
+👉 Fragment = part of a screen
+
+A fragment is not a full app
+
+It lives inside an Activity
+
+Each fragment shows one sectionActivity = house
+Fragments = rooms
+Each section needs separate UI
+
+Easy navigation
+
+Easy to reuse
+
+Supports swipe + tabs
+
+Adapter does NOT display anything
+It just decides which fragment to load
+ViewPager is industry standard
+necessary to create new Java & XML for each section
+| Fragment       | Adapter           |
+| -------------- | ----------------- |
+| UI screen      | Connector         |
+| Shows content  | Supplies content  |
+| Has XML layout | No UI             |
+| One per page   | One per ViewPager |
+Tab click / Swipe
+      ↓
+ViewPager
+      ↓
+Adapter
+      ↓
+Fragment
+      ↓
+XML Layout
+
+Explanation
+
+androidx.viewpager2.widget.ViewPager2
+
+This is the ViewPager2 widget from the AndroidX library
+
+Replaces old ViewPager
+
+Enables swiping between fragments
+
+com.google.android.material.tabs.TabLayout
+
+This is the tab bar
+
+Shows Top Stories | Sports | Entertainment
+
+Works together with ViewPager2 via TabLayoutMediator
+
+Why like this?
+Because TabLayout and ViewPager2 are separate widgets, you need both. You cannot merge them.
+
+2️⃣ Difference between onCreate() and onCreateView()
+Method	Class	Purpose	Key Points
+onCreate(Bundle savedInstanceState)	Activity	Activity initialization	Set content view, find views, set adapters, attach listeners
+onCreateView(LayoutInflater, ViewGroup, Bundle)	Fragment	Inflate Fragment’s UI	Return the fragment’s view hierarchy (XML)
+Key points:You cannot inflate fragment UI in onCreate() → use onCreateView()
+
+You cannot call findViewById() for fragment layout in Activity.onCreate() → must do it in fragment view
+
+What does inflate mean?
+return inflater.inflate(R.layout.fragment_top_stories, container, false);
+
+
+inflater → A tool that turns XML layout into actual View objects in memory.
+
+R.layout.fragment_top_stories → The XML layout file for this fragment.
+
+container → The parent ViewGroup in which this fragment will live (usually ViewPager2 or Activity layout).
+
+false → Don’t attach to parent yet; system will do it.
+
+✅ In short:
+
+“inflate” = load XML and turn it into a screen you can see and interact with
+
+2️⃣ What is Bundle?
+public View onCreateView(LayoutInflater inflater,
+                         ViewGroup container,
+                         Bundle savedInstanceState)
+
+
+Bundle = data bag
+
+Used to pass data between fragments or save state
+
+Example:
+
+Bundle bundle = new Bundle();
+bundle.putString("title", "Top Stories");
+fragment.setArguments(bundle);
+
+
+Then in fragment you can read it:
+
+String title = getArguments().getString("title");
+
+
+✅ In short:
+
+Bundle = a small suitcase to carry data
+
+3️⃣ What is position in createFragment(int position)?
+switch (position) {
+    case 0:
+        return new TopStoriesFragment();
+    case 1:
+        return new SportsFragment();
+    case 2:
+        return new EntertainmentFragment();
+}
+
+
+position = index of the page the ViewPager2 is currently asking for.
+
+0 → first tab
+
+1 → second tab
+
+2 → third tab
+
+ViewPager2 calls createFragment(position) every time it needs a fragment for a particular page.
+
+4️⃣ What is new TabLayoutMediator(...) doing?
+new TabLayoutMediator(tabLayout, viewPager,
+    (tab, position) -> {
+        switch (position) {
+            case 0:
+                tab.setText("Top Stories");
+                break;
+            case 1:
+                tab.setText("Sports");
+                break;
+            case 2:
+                tab.setText("Entertainment");
+                break;
+        }
+    }).attach();
+
+
+TabLayoutMediator = Connects tabs with ViewPager2.
+
+tab → Each tab object
+
+position → Index of tab (0,1,2)
+
+tab.setText() → Sets the text shown on the tab
+
+.attach() → Actually links tabs with pages
+
+✅ In short:
+
+It tells the system: “Tab 0 = Top Stories, Tab 1 = Sports… and make tabs swipeable”
+
+5️⃣ Will it return a new fragment each time?
+
+Yes, createFragment() creates a new fragment object.
+
+But ViewPager2 keeps fragments in memory (default offscreen page limit = 1)
+
+So if you swipe back to an old fragment, the same fragment instance is usually reused (ViewPager2 manages this automatically)
+
+If you scroll too far, old fragments may be destroyed and recreated to save memory.
+
+6️⃣ Why do we write @Override?
+@Override
+public Fragment createFragment(int position)
+
+
+@Override tells the compiler:
+
+“I am overriding a method from the parent class”
+
+Compiler checks if method exists in parent; if not, gives error → avoids mistakes
+
+Makes code cleaner and safer
+
+✅ In short:
+
+It’s a safety tag, not mandatory but highly recommended

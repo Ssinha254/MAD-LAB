@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- TextView -->
+    <TextView
+        android:id="@+id/tvText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modifying the text"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:padding="10dp"/>
+
+    <!-- Buttons -->
+    <Button
+        android:id="@+id/btnRed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Color (Red)" />
+
+    <Button
+        android:id="@+id/btnBlue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Color (Blue)" />
+
+    <Button
+        android:id="@+id/btnBig"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Increase Text Size" />
+
+    <Button
+        android:id="@+id/btnItalic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Italic Text" />
+
+    <Button
+        android:id="@+id/btnFont"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Font" />
+
+    <Button
+        android:id="@+id/btnCenter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Center Text" />
+</LinearLayout>

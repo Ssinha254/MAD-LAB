@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_type"
+        android:title="System/User App"/>
+    <item
+        android:id="@+id/action_open"
+        android:title="Open App"
+        />
+    <item
+        android:id="@+id/action_uninstall"
+        android:title="Uninstall"/>
+
+    <item
+        android:id="@+id/action_details"
+        android:title="View Details" />
+
+    <item
+        android:id="@+id/action_special_perm"
+        android:title="Camera/Location Permission" />
+</menu>

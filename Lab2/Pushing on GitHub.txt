@@ -1,0 +1,30 @@
+Pushing on GitHub 
+Open terminal in your project folder
+git init
+
+Step 2: Add .gitignore
+
+Android Studio already creates this.
+Make sure it includes:
+
+/.idea
+/.gradle
+/build
+/local.properties
+
+Step 3: Commit the project
+git add .
+git commit -m "Initial commit"
+
+Step 4: Create a repo on GitHub
+
+Go to GitHub → New Repository
+
+Do NOT add README or .gitignore
+
+Copy the repo URL.
+
+Step 5: Push to GitHub
+git branch -M main
+git remote add origin https://github.com/username/repo-name.git
+git push -u origin main

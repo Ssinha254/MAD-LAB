@@ -1,0 +1,75 @@
+Shared Network files 	
+	win+R
+	172.16.54.22
+	student	
+	Sharing!2025
+
+New project -> Phone/Tablet -> Empty Views Activity(java) -> groovy
+
+MainActivity.java - logic
+activity_main.xml - UI components
+Pallete - drag and drop UI
+
+Layouts - how components are arranged
+	Linear
+	Table/Grid
+	Constraint - default 
+	Relative
+
+First function to get loaded - onCreate
+To connect frontend to backend 
+setContentView(R.layout.activity_main)   R - resources folder
+Android_manifest.xml - tell which is first screen 
+
+External image - inside res folder - R.images.image_name
+
+Virtual device - Tools --> device manager --> Create virtual device --> Pixel 6-->Google api -->click on device to run
+
+
+CONSTRAINT LAYOUT - 
+edit text in xml file
+constraints should be there 
+put all centre constraints by default then adjust in UI
+
+android:layout_width/height= "wrap_content" --- > fit only content part
+		      "match_parent" --- > big container
+		      "123dp" 
+
+dp vs sp
+sp - scale independent pixels - used in font - can match teh user device specifications
+dp - density independent pixels - maintain consistency in diff  physical devices
+
+
+android:hint  -  what could be in plaintext box
+textview - not enterable text
+
+
+RELATIVE LAYOUT 
+cant move in ui
+give absolute margin to 1 and relate with others 
+margin becomes relative to sibling component
+@dimen/activity_margin - dimensions stored in a file in res/values folder
+refer code for attributes
+
+FUNCTIONALITY
+import EditBox, Button etc from view
+find by id 
+give variable names to them
+setText
+getText
+
+2 ways 
+can make method and use onclick attribute in button xml
+can start onClick Listener in Activity file
+
+TOAST 
+replaced by snackbar now
+refer code
+
+LOGCATS
+logging to see errors
+like printing in console
+
+clear cache if error
+
+

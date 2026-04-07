@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/cab_highlight_selected"
+        android:title="Highlight Selection" />
+    <item
+        android:id="@+id/cab_clear_highlight"
+        android:title="Clear Highlights" />
+</menu>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">lab8_q2</string>
+    <string name="hint_item_name">Enter Grocery Item Name</string>
+    <string name="hint_item_cost">Enter Item Cost</string>
+    <string name="btn_add_item">Add Item to Database</string>
+    <string name="btn_select_item">Select Item</string>
+    <string name="label_selected_items">Selected Items:\n</string>
+    <string name="btn_show_total">Show Total Cost</string>
+    <string name="total_cost_format">Total Cost = ₹%d</string>
+</resources>

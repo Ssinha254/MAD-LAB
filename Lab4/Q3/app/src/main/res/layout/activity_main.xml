@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvcurrentmode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Mode: Wi-Fi"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <ToggleButton
+        android:id="@+id/toggleMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="Wi-Fi"
+        android:textOff="Mobile Data"
+        android:checked="true"
+        android:layout_marginTop="12dp"/>
+
+    <ImageView
+        android:id="@+id/imgMode"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_wifi"
+        android:contentDescription="Mode Image"/>
+
+    <Button
+        android:id="@+id/btnChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Mode"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>
