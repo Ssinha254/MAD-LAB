@@ -28,6 +28,7 @@
     - [TimePicker - `#timepicker`](#timepicker---timepicker)
     - [Toolbar - `#toolbar`](#toolbar---toolbar)
     - [TabLayout + ViewPager2 + FragmentStateAdapter - `#tabs` `#viewpager2` `#fragment`](#tablayout--viewpager2--fragmentstateadapter---tabs-viewpager2-fragment)
+    - [Intent (Explicit) - `#intent-explicit`](#intent-explicit---intent-explicit)
     - [Intent (Implicit URL) - `#intent-implicit`](#intent-implicit-url---intent-implicit)
     - [Toast and Custom Toast - `#toast` `#custom-toast`](#toast-and-custom-toast---toast-custom-toast)
     - [Options Menu - `#menu-options`](#options-menu---menu-options)
@@ -922,7 +923,7 @@ IN ACTIVITY_MAIN OR CUSTOM TOOLBAR
         android:layout_height="match_parent"/>
 ```
 
-````java
+```java
 package com.example.lab3_q3;
 
 import androidx.annotation.NonNull;
@@ -997,6 +998,7 @@ public class FirstFragment extends Fragment {
         return tv;
     }
 }
+```
 
 ### Intent (Explicit) - `#intent-explicit`
 
@@ -1019,8 +1021,11 @@ int seats = receivedIntent.getIntExtra("availableSeats", 0);
 ArrayList<String> items = getIntent().getStringArrayListExtra("items");
 ArrayList<Integer> costs = getIntent().getIntegerArrayListExtra("costs");
 
+//ADD IN AndroidManifest.xml
+
 <activity android:name=".ResultActivity"/>
 Manifest
+
 TextView tvFieldOne = findViewById(R.id.tvFieldOne);
 TextView tvFieldTwo = findViewById(R.id.tvFieldTwo);
 tvFieldOne.setText("Movie: " + selectedMovie);
@@ -1047,7 +1052,7 @@ btnBackToHome.setOnClickListener(new View.OnClickListener() { // back home
                 finish();
             }
         });
-````
+```
 
 ### Intent (Implicit URL) - `#intent-implicit`
 
@@ -1137,6 +1142,12 @@ toast.show();
 - Q3 - sorting searching etc
 
 ```java
+
+CHANGE IN THEMES
+   <style name="Base.Theme.Practice" parent="Theme.Material3.DayNight">
+
+OUTSIDE ON_CREATE
+
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -1153,16 +1164,18 @@ public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 }
 
 //Add menu directory then menu resource
- <item
-        android:id="@+id/menu_membership"
-        android:title="Membership"
-        app:showAsAction="never" />
+ <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_1"
+        android:title="View All"
+        app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_home"
-        android:icon="@drawable/ic_home"
-        android:title="Homepage"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/menu_2"
+        android:title="Clear Form"
+        app:showAsAction="never" />
+</menu>
 ```
 
 ### Context Menu - `#menu-context`
@@ -1195,23 +1208,22 @@ Snippet (Layout XML - `activity_main.xml`):
 </LinearLayout>
 ```
 
+   <style name="Base.Theme.Practice" parent="Theme.Material3.DayNight">
+
 Snippet (Menu XML - `res/menu/context_menu_app.xml`):
 
 ```xml
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_edit"
-        android:title="Edit" />
+        android:id="@+id/menu_1"
+        android:title="View All"
+        app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_delete"
-        android:title="Delete"
-        android:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_share"
-        android:title="Share"
-        android:showAsAction="never"  />
+        android:id="@+id/menu_2"
+        android:title="Clear Form"
+        app:showAsAction="never" />
 </menu>
 ```
 
@@ -1448,18 +1460,17 @@ Snippet (Layout XML - `activity_main.xml`):
 Snippet (Menu XML - `res/menu/pop_up_menu.xml`):
 
 ```xml
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_item_1"
-        android:title="Image 1" />
+        android:id="@+id/menu_1"
+        android:title="View All"
+        app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_item_2"
-        android:title="Image 2" />
-
-    <item
-        android:id="@+id/menu_item_3"
-        android:title="Image 3" />
+        android:id="@+id/menu_2"
+        android:title="Clear Form"
+        app:showAsAction="never" />
 </menu>
 ```
 
@@ -1599,6 +1610,7 @@ protected void onStart() {
 - Q1/Q2/Q3 store data in SQLite.
 - Q1/Q3 view records in `ListView`.
 - Q3 displays selected record fields in `TableLayout`.
+- For generalized XML IDs, prefer `@+id/listViewItems`, `@+id/editTextInput`, `@+id/buttonActionPrimary`, and `@+id/tableLayoutData` in SQLite examples.
 
 - [Lab8/Q1/app/src/main/java/com/example/lab8_q1/MainActivity.java](Lab8/Q1/app/src/main/java/com/example/lab8_q1/MainActivity.java)
 - [Lab8/Q1/app/src/main/java/com/example/lab8_q1/DatabaseHelper.java](Lab8/Q1/app/src/main/java/com/example/lab8_q1/DatabaseHelper.java)

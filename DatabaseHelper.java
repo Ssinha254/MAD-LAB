@@ -17,11 +17,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
 
     // 🔹 TABLE
-    public static final String TABLE_TASKS = "tasks";
+    public static final String TABLE_ITEMS = "items";
 
     // 🔹 COLUMNS
     public static final String COL_ID = "id";
-    public static final String COL_NAME = "task_name";
+    public static final String COL_NAME = "item_name";
     public static final String COL_DATE = "due_date";
     public static final String COL_PRIORITY = "priority";
 
@@ -33,7 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // 🔹 CREATE TABLE
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "CREATE TABLE " + TABLE_TASKS + " (" +
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_ITEMS + " (" +
                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_NAME + " TEXT, " +
                 COL_DATE + " TEXT, " +
@@ -45,7 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // 🔹 UPGRADE
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TASKS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ITEMS);
         onCreate(db);
     }
 
@@ -137,20 +137,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // =====================================================
-    //  OPTIONAL: TASK-SPECIFIC WRAPPER
+    //  OPTIONAL: ITEM-SPECIFIC WRAPPER
     // =====================================================
 
-    public long insertTask(String name, String date, String priority) {
+    public long insertItem(String name, String date, String priority) {
         ContentValues values = new ContentValues();
         values.put(COL_NAME, name);
         values.put(COL_DATE, date);
         values.put(COL_PRIORITY, priority);
 
-        return insert(TABLE_TASKS, values);
+        return insert(TABLE_ITEMS, values);
     }
 
-    public int deleteTask(int id) {
-        return delete(TABLE_TASKS, "id=?", new String[]{String.valueOf(id)});
+    public int deleteItem(int id) {
+        return delete(TABLE_ITEMS, "id=?", new String[]{String.valueOf(id)});
     }
 }
 
@@ -163,7 +163,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     DatabaseHelper dbHelper = new DatabaseHelper(this);
 
     // 🔹 2. Insert (simple)
-    dbHelper.insertTask("Study", "Tomorrow", "High");
+    dbHelper.insertItem("Study", "Tomorrow", "High");
 
     // 🔹 3. Insert (generic HashMap)
     HashMap<String, String> map = new HashMap<>();
@@ -171,22 +171,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     map.put(COL_DATE, "Today");
     map.put(COL_PRIORITY, "Medium");
 
-    dbHelper.insertRow(TABLE_TASKS, map);
+    dbHelper.insertRow(TABLE_ITEMS, map);
 
     // 🔹 4. Get all
     List<HashMap<String, String>> list =
-        dbHelper.getFiltered("SELECT * FROM " + TABLE_TASKS, null);
+        dbHelper.getFiltered("SELECT * FROM " + TABLE_ITEMS, null);
 
     // 🔹 5. Sorting
     List<HashMap<String, String>> result = dbHelper.getFiltered(
-        "SELECT * FROM " + TABLE_TASKS + " ORDER BY " + COL_PRIORITY + " DESC",
+        "SELECT * FROM " + TABLE_ITEMS + " ORDER BY " + COL_PRIORITY + " DESC",
         null
     );
 
     // 🔹 6. MAX
     List<HashMap<String, String>> result =
         dbHelper.getFiltered(
-            "SELECT MAX(priority) as max_val FROM " + TABLE_TASKS,
+            "SELECT MAX(priority) as max_val FROM " + TABLE_ITEMS,
             null
         );
 
@@ -194,12 +194,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // 🔹 7. COUNT
     String count = dbHelper.getFiltered(
-        "SELECT COUNT(*) as total FROM " + TABLE_TASKS,
+        "SELECT COUNT(*) as total FROM " + TABLE_ITEMS,
         null
     ).get(0).get("total");
 
     // 🔹 8. DELETE
-    dbHelper.deleteTask(1);
+    dbHelper.deleteItem(1);
 
     */
 
@@ -212,57 +212,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 /*
 // Class fields
 private DatabaseHelper dbHelper;
-private List<HashMap<String, String>> taskList;
+private List<HashMap<String, String>> itemList;
 private ArrayList<String> displayList;
 private ArrayAdapter<String> adapter;
 private ListView listView;
+private Button btnSave;
 
-// EditTexts
-private EditText etTaskName, etDueDate, etPriority;
+// Generalized XML IDs used in this example:
+// @+id/listViewItems, @+id/editTextInput, @+id/buttonActionPrimary
+private EditText editTextInput;
 
 private void initDbAndList() {
     dbHelper = new DatabaseHelper(this);
 
-    taskList = new ArrayList<>();
+    listView = findViewById(R.id.listViewItems);
+    editTextInput = findViewById(R.id.editTextInput);
+    btnSave = findViewById(R.id.buttonActionPrimary);
+
+    itemList = new ArrayList<>();
     displayList = new ArrayList<>();
 
-    loadTasks();
+    loadItems();
+
+    btnSave.setOnClickListener(v -> saveItem());
 
     listView.setOnItemClickListener((parent, view, position, id) -> {
-        HashMap<String, String> task = taskList.get(position);
+        HashMap<String, String> item = itemList.get(position);
 
-        int taskId = Integer.parseInt(task.get(DatabaseHelper.COL_ID));
+        int itemId = Integer.parseInt(item.get(DatabaseHelper.COL_ID));
 
-        String name = task.get(DatabaseHelper.COL_NAME);
-        String date = task.get(DatabaseHelper.COL_DATE);
-        String priority = task.get(DatabaseHelper.COL_PRIORITY);
+        String name = item.get(DatabaseHelper.COL_NAME);
+        String date = item.get(DatabaseHelper.COL_DATE);
+        String priority = item.get(DatabaseHelper.COL_PRIORITY);
 
         // Fill fields for editing
-        etTaskName.setText(name);
-        etDueDate.setText(date);
-        etPriority.setText(priority);
+        editTextInput.setText(name + " | " + date + " | " + priority);
 
         // Example: delete directly
-        // deleteTask(taskId);
+        // deleteItem(itemId);
 
         // OR update later:
-        // updateTask(taskId);
+        // updateItem(itemId);
     });
 }
 
 // Load data from DB -> ListView
-private void loadTasks() {
-    taskList = dbHelper.getFiltered(
-            "SELECT * FROM " + DatabaseHelper.TABLE_TASKS,
+private void loadItems() {
+    itemList = dbHelper.getFiltered(
+            "SELECT * FROM " + DatabaseHelper.TABLE_ITEMS,
             null
     );
 
     displayList.clear();
 
-    for (HashMap<String, String> task : taskList) {
-        String name = task.get(DatabaseHelper.COL_NAME);
-        String date = task.get(DatabaseHelper.COL_DATE);
-        String priority = task.get(DatabaseHelper.COL_PRIORITY);
+    for (HashMap<String, String> item : itemList) {
+        String name = item.get(DatabaseHelper.COL_NAME);
+        String date = item.get(DatabaseHelper.COL_DATE);
+        String priority = item.get(DatabaseHelper.COL_PRIORITY);
 
         displayList.add(name + " | " + date + " | " + priority);
     }
@@ -275,51 +281,69 @@ private void loadTasks() {
     listView.setAdapter(adapter);
 }
 
-// Insert Task
-private void saveTask() {
-    ContentValues values = new ContentValues();
-    values.put(DatabaseHelper.COL_NAME, etTaskName.getText().toString().trim());
-    values.put(DatabaseHelper.COL_DATE, etDueDate.getText().toString().trim());
-    values.put(DatabaseHelper.COL_PRIORITY, etPriority.getText().toString().trim());
+// Insert Item
+private void saveItem() {
+    String text = editTextInput.getText().toString().trim();
+    if (text.isEmpty()) return;
 
-    dbHelper.insert(DatabaseHelper.TABLE_TASKS, values);
-    loadTasks();
+    String[] parts = text.split("\\\\|");
+    String name = parts.length > 0 ? parts[0].trim() : "";
+    String date = parts.length > 1 ? parts[1].trim() : "NA";
+    String priority = parts.length > 2 ? parts[2].trim() : "Medium";
+
+    ContentValues values = new ContentValues();
+    values.put(DatabaseHelper.COL_NAME, name);
+    values.put(DatabaseHelper.COL_DATE, date);
+    values.put(DatabaseHelper.COL_PRIORITY, priority);
+     } else {
+            values.put(DatabaseHelper.COL_STATUS, "Not Specified");
+
+    dbHelper.insert(DatabaseHelper.TABLE_ITEMS, values);
+    loadItems();
 }
 
-// Update Task
-private void updateTask(int id) {
+// Update Item
+private void updateItem(int id) {
+    String text = editTextInput.getText().toString().trim();
+    if (text.isEmpty()) return;
+
+    String[] parts = text.split("\\\\|");
+    String name = parts.length > 0 ? parts[0].trim() : "";
+    String date = parts.length > 1 ? parts[1].trim() : "NA";
+    String priority = parts.length > 2 ? parts[2].trim() : "Medium";
+
     ContentValues values = new ContentValues();
-    values.put(DatabaseHelper.COL_NAME, etTaskName.getText().toString().trim());
-    values.put(DatabaseHelper.COL_DATE, etDueDate.getText().toString().trim());
-    values.put(DatabaseHelper.COL_PRIORITY, etPriority.getText().toString().trim());
+    values.put(DatabaseHelper.COL_NAME, name);
+    values.put(DatabaseHelper.COL_DATE, date);
+    values.put(DatabaseHelper.COL_PRIORITY, priority);
 
     dbHelper.update(
-            DatabaseHelper.TABLE_TASKS,
+            DatabaseHelper.TABLE_ITEMS,
             values,
             DatabaseHelper.COL_ID + "=?",
             new String[]{String.valueOf(id)}
     );
 
-    loadTasks();
+    loadItems();
 }
 
-// Delete Task
-private void deleteTask(int id) {
+// Delete Item
+private void deleteItem(int id) {
     dbHelper.delete(
-            DatabaseHelper.TABLE_TASKS,
+            DatabaseHelper.TABLE_ITEMS,
             DatabaseHelper.COL_ID + "=?",
             new String[]{String.valueOf(id)}
     );
 
-    loadTasks();
+    loadItems();
 }
  
 //Handle List Click 
 listView.setOnItemClickListener((parent, view, position, id) -> {
 
-    HashMap<String, String> task = taskList.get(position);
+    HashMap<String, String> item = itemList.get(position);
 
-    int taskId = Integer.parseInt(task.get("id"));
+    int itemId = Integer.parseInt(item.get("id"));
     // Create PopupMenu
             PopupMenu popupMenu = new PopupMenu(MainActivity.this, view);
             popupMenu.inflate(R.menu.menu_task_options);  // Create this menu XML
@@ -328,12 +352,12 @@ listView.setOnItemClickListener((parent, view, position, id) -> {
                 if (item.getItemId() == R.id.menu_edit) {
                     // Navigate to EditTaskActivity
                     Intent intent = new Intent(MainActivity.this, EditTaskActivity.class);
-                    intent.putExtra("taskId", taskId);
+                    intent.putExtra("itemId", itemId);
                     startActivity(intent);
                     return true;
 
                 } else if (item.getItemId() == R.id.menu_delete) {
-                    deleteTask(taskId);
+                    deleteItem(itemId);
                     return true;
 
                 } else if (item.getItemId() == R.id.menu_cancel) {
