@@ -1,18 +1,10 @@
-# MAD Midsem Offline Handbook (Labs 1-7)
-
-Purpose: one-file, no-internet reference for exam coding.
-
-How to use fast:
-
-- Use `Ctrl+F` in this file with component tags like `#scrollview`, `#spinner`, `#intent-explicit`, `#menu-context`.
-- Every component section has: what it does, how used, where used (links), snippet, and extension ideas.
+﻿# MAD Midsem Offline Handbook (Labs 1-7)
 
 ## Table of Contents
 
 - [MAD Midsem Offline Handbook (Labs 1-7)](#mad-midsem-offline-handbook-labs-1-7)
   - [Table of Contents](#table-of-contents)
-  - [1) Component Index (Searchable)](#1-component-index-searchable)
-  - [2) Component-Wise Handbook](#2-component-wise-handbook)
+  - [1) Component-Wise Handbook](#1-component-wise-handbook)
     - [LinearLayout - `#linearlayout`](#linearlayout---linearlayout)
     - [RelativeLayout - `#relativelayout`](#relativelayout---relativelayout)
     - [ScrollView - `#scrollview`](#scrollview---scrollview)
@@ -29,7 +21,6 @@ How to use fast:
     - [ZoomButton - `#zoombutton`](#zoombutton---zoombutton)
     - [Spinner - `#spinner`](#spinner---spinner)
     - [ArrayAdapter - `#arrayadapter`](#arrayadapter---arrayadapter)
-    - [Custom Adapter - `#custom-adapter`](#custom-adapter---custom-adapter)
     - [ListView - `#listview`](#listview---listview)
     - [GridView - `#gridview`](#gridview---gridview)
     - [TableLayout and TableRow - `#tablelayout` `#tablerow`](#tablelayout-and-tablerow---tablelayout-tablerow)
@@ -46,42 +37,19 @@ How to use fast:
     - [AlertDialog - `#alertdialog`](#alertdialog---alertdialog)
     - [SpannableString and BackgroundColorSpan - `#spans`](#spannablestring-and-backgroundcolorspan---spans)
     - [Activity Lifecycle - `#activity-lifecycle`](#activity-lifecycle---activity-lifecycle)
-  - [5) Lab 8 Component-Wise Usage + Links](#5-lab-8-component-wise-usage--links)
+    - [SharedPreferences - `#sharedpreferences`](#sharedpreferences---sharedpreferences)
     - [SQLite Flow (DB + List + Table) - `#sqlite` `#view-table`](#sqlite-flow-db--list--table---sqlite-view-table)
     - [Q4: View SQLite Table / Use Prebuilt DB - `#sqlite-q4` `#sqlite-prebuilt`](#q4-view-sqlite-table--use-prebuilt-db---sqlite-q4-sqlite-prebuilt)
     - [SQLiteOpenHelper - `#sqliteopenhelper`](#sqliteopenhelper---sqliteopenhelper)
-    - [SharedPreferences - `#sharedpreferences`](#sharedpreferences---sharedpreferences)
-    - [End-to-end example reference](#end-to-end-example-reference)
   - [6) Common Mistakes Checklist (Before Running)](#6-common-mistakes-checklist-before-running)
   - [8) Quick Path Index (Copy/Paste Friendly)](#8-quick-path-index-copypaste-friendly)
 
-## 1) Component Index (Searchable)
-
-`#linearlayout` `#relativelayout` `#scrollview` `#textview` `#edittext` `#button` `#imageview` `#checkbox` `#radiobutton` `#radiogroup` `#switch` `#togglebutton` `#seekbar` `#zoombutton` `#spinner` `#listview` `#gridview` `#tablelayout` `#tablerow` `#datepicker` `#timepicker` `#toolbar` `#tabs` `#viewpager2` `#fragment` `#arrayadapter` `#custom-adapter` `#intent-explicit` `#intent-implicit` `#toast` `#custom-toast` `#menu-options` `#menu-context` `#actionmode` `#contextual-action-mode` `#menu-popup` `#alertdialog` `#spans` `#activity-lifecycle`
-
-Notes:
-
-- This file is now component-wise.
-- `ConstraintLayout` is not used in the Lab1-7 Android Studio solution folders currently present in this workspace.
-
-## 2) Component-Wise Handbook
+## 1) Component-Wise Handbook
 
 ### LinearLayout - `#linearlayout`
 
-What it does:
-
-- Arranges children in a single row or column.
-
-How used in solutions:
-
-- Vertical form stacking and nested row-column composition.
-
-Where used:
-
 - [Lab2/Q3/app/src/main/res/layout/activity_linear.xml](Lab2/Q3/app/src/main/res/layout/activity_linear.xml)
 - [Lab5/Q3/app/src/main/res/layout/activity_main.xml](Lab5/Q3/app/src/main/res/layout/activity_main.xml)
-
-Snippet:
 
 ```xml
 <LinearLayout
@@ -93,46 +61,22 @@ Snippet:
 
 ### RelativeLayout - `#relativelayout`
 
-What it does:
-
-- Places views relative to other views or parent edges.
-
-How used in solutions:
-
-- Label -> input -> action buttons aligned in one row.
-
-Where used:
-
 - [Lab2/Q3/app/src/main/res/layout/activity_relative.xml](Lab2/Q3/app/src/main/res/layout/activity_relative.xml)
-
-Snippet:
 
 ```xml
 <Button
-    android:id="@+id/btnCancel"
+    android:id="@+id/btnActionSecondary"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_below="@id/etInput"
-    android:layout_toStartOf="@id/btnOk" />
+    android:layout_toStartOf="@id/btnActionPrimary" />
 ```
 
 ### ScrollView - `#scrollview`
 
-What it does:
-
-- Makes long content vertically scrollable.
-
-How used in solutions:
-
-- Wraps long forms and long text pages.
-
-Where used:
-
 - [Lab5/Q3/app/src/main/res/layout/activity_main.xml](Lab5/Q3/app/src/main/res/layout/activity_main.xml)
 - [Lab6/Q1/app/src/main/res/layout/activity_main.xml](Lab6/Q1/app/src/main/res/layout/activity_main.xml)
 - [Lab7/Q3/app/src/main/res/layout/activity_main.xml](Lab7/Q3/app/src/main/res/layout/activity_main.xml)
-
-Snippet:
 
 ```xml
 <ScrollView
@@ -140,86 +84,41 @@ Snippet:
     android:layout_height="match_parent">
 ```
 
-What more you can do:
-
-- Pair with `fillViewport="true"` for better full-screen behavior.
-
 ### TextView - `#textview`
-
-What it does:
-
-- Displays text; also used for dynamic content updates.
-
-How used in solutions:
-
-- Styling demo, selected item display, content block updates.
-
-Where used:
 
 - [Lab1/Q1/app/src/main/java/com/example/lab1_q1/MainActivity.java](Lab1/Q1/app/src/main/java/com/example/lab1_q1/MainActivity.java)
 - [Lab6/Q1/app/src/main/java/com/example/lab6_q1/MainActivity.java](Lab6/Q1/app/src/main/java/com/example/lab6_q1/MainActivity.java)
 
-Snippet:
-
 ```java
-btnRed.setOnClickListener(v -> tv.setTextColor(Color.RED));
-btnBig.setOnClickListener(v -> tv.setTextSize(26));
-btnCenter.setOnClickListener(v -> tv.setGravity(Gravity.CENTER));
+btnActionA.setOnClickListener(v -> textViewOutput.setTextColor(Color.RED));
+btnActionB.setOnClickListener(v -> textViewOutput.setTextSize(26));
+btnActionC.setOnClickListener(v -> textViewOutput.setGravity(Gravity.CENTER));
 ```
 
-What more you can do:
-
-- Use `setMovementMethod` for clickable links.
-- Use spans for partial formatting.
-
 ### EditText - `#edittext`
-
-What it does:
-
-- Accepts user input.
-
-How used in solutions:
-
-- Input reading, trim, validation, inline error.
-
-Where used:
 
 - [Lab2/Q3/app/src/main/res/layout/activity_relative.xml](Lab2/Q3/app/src/main/res/layout/activity_relative.xml)
 - [Lab5/Q1/app/src/main/java/com/example/lab5_q1/MainActivity.java](Lab5/Q1/app/src/main/java/com/example/lab5_q1/MainActivity.java)
 
-Snippet (XML):
-
 ```xml
 <EditText
-    android:id="@+id/etVehicleNumber"
+    android:id="@+id/etInputValue"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:hint="Enter vehicle number"
     android:inputType="text" /number />
 ```
 
-Snippet (Java):
-
 ```java
-String vehicleNumber = etVehicleNumber.getText().toString().trim();
-if (vehicleNumber.isEmpty()) {
-    etVehicleNumber.setError("Enter vehicle number");
-    etVehicleNumber.requestFocus();
+String inputValue = etInputValue.getText().toString().trim();
+if (inputValue.isEmpty()) {
+    etInputValue.setError("Enter value");
+    etInputValue.requestFocus();
     return;
 }
 ```
 
 ### Button - `#button`
-
-What it does:
-
-- Triggers actions on click.
-
-How used in solutions:
-
-- Submit, reset, navigate, switch state.
-
-Where used:
 
 - [Lab4/Q2/app/src/main/java/com/example/lab4_q2/MainActivity.java](Lab4/Q2/app/src/main/java/com/example/lab4_q2/MainActivity.java)
 - [Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java](Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java)
@@ -227,7 +126,7 @@ Where used:
 Snippet:
 
 ```java
-btnSave.setOnClickListener(new View.OnClickListener() {
+btnActionPrimary.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         saveOrUpdateTask();
@@ -243,88 +142,59 @@ View.OnClickListener listener = v -> {
     String text = b.getText().toString();
     Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
 };
-btn1.setOnClickListener(listener);
-btn2.setOnClickListener(listener);
-btn3.setOnClickListener(listener);
+btnAction1.setOnClickListener(listener);
+btnAction2.setOnClickListener(listener);
+btnAction3.setOnClickListener(listener);
 ```
 
 ### ImageView - `#imageview`
 
-What it does:
-
-- Displays drawable resources dynamically.
-
-How used in solutions:
-
-- Mode/icon swap and banner/image switching.
-
-Where used:
-
 - [Lab4/Q3/app/src/main/java/com/example/lab4_q3/MainActivity.java](Lab4/Q3/app/src/main/java/com/example/lab4_q3/MainActivity.java)
 - [Lab7/Q2/app/src/main/java/com/example/lab7_q2/MainActivity.java](Lab7/Q2/app/src/main/java/com/example/lab7_q2/MainActivity.java)
 
-Snippet:
-
 ```java
-if (item.getItemId() == R.id.image2) {
-    mainImage.setImageResource(R.drawable.image2);
+if (item.getItemId() == R.id.menu_item_2) {
+    imageViewMain.setImageResource(R.drawable.image2);
     return true;
 }
+```
 
-
+```xml
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:id="@+id/menuIcon"
+        android:id="@+id/imageViewMenu"
         android:src="@drawable/ic_launcher_foreground"
         />
 ```
 
-What more you can do:
-
-- Use `setScaleType` for crop/fit behavior.
-
 ### CheckBox - `#checkbox`
-
-What it does:
-
-- Multiple independent selections.
-
-How used in solutions:
-
-- Build itemized order and total cost.
-
-Where used:
 
 - [Lab4/Q4/app/src/main/java/com/example/lab4_q4/MainActivity.java](Lab4/Q4/app/src/main/java/com/example/lab4_q4/MainActivity.java)
 
-Snippet (XML):
-
 ```xml
 <CheckBox
-    android:id="@+id/cbPizza"
+    android:id="@+id/cbOptionOne"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Pizza (Rs. 150)" />
+    android:text="Option 1" />
 
 <CheckBox
-    android:id="@+id/cbBurger"
+    android:id="@+id/cbOptionTwo"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Burger (Rs. 100)" />
+    android:text="Option 2" />
 ```
-
-Snippet (Java):
 
 ```java
 ArrayList<String> items = new ArrayList<>();
 ArrayList<Integer> costs = new ArrayList<>();
 int total = 0;
 
-if (cbPizza.isChecked()) {
-    items.add("Pizza");
-    costs.add(150);
-    total += 150;
+if (cbOptionOne.isChecked()) {
+    items.add("Option 1");
+    costs.add(100);
+    total += 100;
 }
 
 if (items.isEmpty()) {
@@ -333,108 +203,90 @@ if (items.isEmpty()) {
 }
 submitted = true;
 setChecked(true/false)
-cbPizza.setEnabled(true/false);
+cbOptionOne.setEnabled(true/false);
 ```
-
-What more you can do:
-
-- Pre-check defaults for recommended combos.
 
 ### RadioButton - `#radiobutton`
 
-What it does:
-
-- Represents one selectable option inside a `RadioGroup`.
-
-How used in solutions:
-
-- Not directly present in current Lab1-7 solution folders; commonly used for single-choice questions.
-
-Snippet (XML):
-
 ```xml
 <RadioButton
-    android:id="@+id/rbMale"
+    android:id="@+id/rbOptionOne"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Male" />
+    android:text="Option 1" />
 ```
 
-Snippet (Java):
-
 ```java
-RadioButton rbMale = findViewById(R.id.rbMale);
-if (rbMale.isChecked()) {
-    Toast.makeText(this, "Male selected", Toast.LENGTH_SHORT).show();
+RadioButton rbOptionOne = findViewById(R.id.rbOptionOne);
+if (rbOptionOne.isChecked()) {
+    Toast.makeText(this, "Option 1 selected", Toast.LENGTH_SHORT).show();
 }
 ```
 
 ### RadioGroup - `#radiogroup`
 
-What it does:
-
-- Groups radio buttons so only one option can be selected at a time.
-
-How used in solutions:
-
-- Not directly present in current Lab1-7 solution folders; useful for single-select forms.
-
-Snippet (XML):
-
 ```xml
 <RadioGroup
-    android:id="@+id/rgGender"
+    android:id="@+id/rgOptions"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
     <RadioButton
-        android:id="@+id/rbMale"
+        android:id="@+id/rbOptionOne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Male" />
+        android:text="Option 1" />
 
     <RadioButton
-        android:id="@+id/rbFemale"
+        android:id="@+id/rbOptionTwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Female" />
+        android:text="Option 2" />
 </RadioGroup>
 ```
 
-Snippet (Java):
-
 ```java
-RadioGroup rgGender = findViewById(R.id.rgGender);
-int selectedId = rgGender.getCheckedRadioButtonId();
+RadioGroup rgOptions = findViewById(R.id.rgOptions);
+int selectedId = rgOptions.getCheckedRadioButtonId();
 
 if (selectedId != -1) {
     RadioButton selected = findViewById(selectedId);
     String value = selected.getText().toString();
     Toast.makeText(this, "Selected: " + value, Toast.LENGTH_SHORT).show();
+
+    rgOptions.clearCheck();
 }
+//Auto-listen when user changes selection. Use this if you want instant response on tap.
+
+RadioGroup rgOptions = findViewById(R.id.rgOptions);
+
+rgOptions.setOnCheckedChangeListener((group, checkedId) -> {
+if (checkedId != -1) {
+RadioButton selected = findViewById(checkedId);
+String value = selected.getText().toString();
+Toast.makeText(this, "Selected: " + value, Toast.LENGTH_SHORT).show();
+}
+});
+//Individual RadioButton checked listeners
+CompoundButton.OnCheckedChangeListener radioListener = (buttonView, isChecked) -> {
+if (isChecked) {
+Toast.makeText(this, "Selected: " + buttonView.getText(), Toast.LENGTH_SHORT).show();
+}
+};
+
+rbOptionOne.setOnCheckedChangeListener(radioListener);
+rbOptionTwo.setOnCheckedChangeListener(radioListener);
+
 ```
 
 ### ToggleButton - `#togglebutton`
 
-What it does:
-
-- Two-state switch.
-
-How used in solutions:
-
-- Mode switch and premium ticket gating.
-
-Where used:
-
 - [Lab4/Q3/app/src/main/java/com/example/lab4_q3/MainActivity.java](Lab4/Q3/app/src/main/java/com/example/lab4_q3/MainActivity.java)
 - [Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java](Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java)
 
-Snippet (XML):
-
 ```xml
 <ToggleButton
-    android:id="@+id/toggleBtn"
+    android:id="@+id/toggleState"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textOn="ON"
@@ -442,48 +294,36 @@ Snippet (XML):
     android:checked="false" />
 ```
 
-Snippet (Java):
-
 ```java
-toggleTicketType.setOnCheckedChangeListener((buttonView, isChecked) -> {
+toggleState.setOnCheckedChangeListener((buttonView, isChecked) -> {
     checkPremiumBookingRule();
 });
 
-toggleBtn.setOnClickListener(v -> {
-    if (toggleBtn.isChecked()) {
+toggleState.setOnClickListener(v -> {
+    if (toggleState.isChecked()) {
         showToast("Toggle ON", R.drawable.panda);
     } else {
         showToast("Toggle OFF", R.drawable.rat);
     }
 });
-togglebtn.setChecked(true/false)
+toggleState.setChecked(true/false)
 ```
 
 ### Switch - `#switch`
 
-What it does:
-
-- A modern two-state on/off control (alternative to `ToggleButton`).
-
-How used in solutions:
-
-- Not directly present in current Lab1-7 solution folders; useful for settings-style toggles.
-
-Snippet (XML):
+A modern two-state on/off control (alternative to `ToggleButton`).
 
 ```xml
 <Switch
-    android:id="@+id/switchNotifications"
+    android:id="@+id/switchState"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Enable Notifications" />
 ```
 
-Snippet (Java):
-
 ```java
-Switch switchNotifications = findViewById(R.id.switchNotifications);
-switchNotifications.setOnCheckedChangeListener((buttonView, isChecked) -> {
+Switch switchState = findViewById(R.id.switchState);
+switchState.setOnCheckedChangeListener((buttonView, isChecked) -> {
     String msg = isChecked ? "Notifications ON" : "Notifications OFF";
     Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 });
@@ -491,45 +331,33 @@ switchNotifications.setOnCheckedChangeListener((buttonView, isChecked) -> {
 
 ### SeekBar - `#seekbar`
 
-What it does:
-
-- Lets the user select a value in a range by dragging a thumb.
-
-How used in solutions:
-
-- Not directly present in current Lab1-7 solution folders; useful for brightness, volume, and rating selection.
-
-Snippet (XML):
-
 ```xml
 <TextView
-    android:id="@+id/tvSeekValue"
+    android:id="@+id/tvValue"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Value: 50" />
 
 <SeekBar
-    android:id="@+id/seekBarValue"
+    android:id="@+id/seekBarInput"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:max="100"
     android:progress="50" />
 ```
 
-Snippet (Java):
-
 ```java
-SeekBar seekBarValue = findViewById(R.id.seekBarValue);
-TextView tvSeekValue = findViewById(R.id.tvSeekValue);
+SeekBar seekBarInput = findViewById(R.id.seekBarInput);
+TextView tvValue = findViewById(R.id.tvValue);
 
-tvSeekValue.setText("Value: " + seekBarValue.getProgress());
+tvValue.setText("Value: " + seekBarInput.getProgress());
 
-seekBarValue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+seekBarInput.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (progress < 1) {
                     seekBar.setProgress(1);
-        tvSeekValue.setText("Value: " + progress);
+        tvValue.setText("Value: " + progress);
     }
 
     @Override
@@ -547,101 +375,90 @@ seekBar.setProgress(1)
 
 ### ZoomButton - `#zoombutton`
 
-What it does:
-
 - A button specialized for zoom in/zoom out actions.
-
-How used in solutions:
-
-- Not directly present in current Lab1-7 solution folders; used in image/map style screens.
-
-Snippet (XML):
 
 ```xml
 <ZoomButton
-    android:id="@+id/btnZoomIn"
+    android:id="@+id/zoomButtonIn"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="+" />
 ```
 
-Snippet (Java):
-
 ```java
-ZoomButton btnZoomIn = findViewById(R.id.btnZoomIn);
-ImageView ivPhoto = findViewById(R.id.ivPhoto);
+ZoomButton zoomButtonIn = findViewById(R.id.zoomButtonIn);
+ImageView imageViewPreview = findViewById(R.id.imageViewPreview);
 
-btnZoomIn.setOnClickListener(v -> {
-    ivPhoto.setScaleX(ivPhoto.getScaleX() + 0.1f);
-    ivPhoto.setScaleY(ivPhoto.getScaleY() + 0.1f);
+zoomButtonIn.setOnClickListener(v -> {
+    imageViewPreview.setScaleX(imageViewPreview.getScaleX() + 0.1f);
+    imageViewPreview.setScaleY(imageViewPreview.getScaleY() + 0.1f);
 });
 ```
 
 ### Spinner - `#spinner`
 
-What it does:
-
 - Single-select dropdown list.
-
-How used in solutions:
-
-- Vehicle/movie/theatre selections and source-destination booking.
-
-Where used:
-
 - [Lab5/Q1/app/src/main/java/com/example/lab5_q1/MainActivity.java](Lab5/Q1/app/src/main/java/com/example/lab5_q1/MainActivity.java)
 - [Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java](Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java)
 
-Snippet (XML):
-
 ```xml
 <Spinner
-    android:id="@+id/spinnerMovie"
+    android:id="@+id/spinnerOptions"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 ```
 
-Snippet (Java):
-
 ```java
-ArrayAdapter<String> movieAdapter = new ArrayAdapter<>(
+Spinner spinner = findViewById(R.id.spinnerOptions);
+
+String[] options = {"Select Option", "Option 1", "Option 2", "Option 3"};
+
+ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
         this,
         android.R.layout.simple_spinner_item,
-        movies
+        options
 );
-movieAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-spinnerMovie.setAdapter(movieAdapter);
+spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+spinner.setAdapter(spinnerAdapter);
+
+// Access selected element anytime (for submit button etc.)
+String selectedValue = spinner.getSelectedItem().toString();
+
+// Access selected element when user changes selection
+spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String item = parent.getItemAtPosition(position).toString();
+        Toast.makeText(MainActivity.this, "Selected: " + item, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+    }
+});
 
 private void clearFields() {
-    spinnerVehicleType.setSelection(0);
-    etVehicleNumber.setText("");
+    spinner.setSelection(0);
 }
 ```
 
-What more you can do:
-
-- Use custom row adapter (image + text). - array adapter
-
 ### ArrayAdapter - `#arrayadapter`
-
-What it does:
 
 - Bridges simple arrays/lists to UI lists and spinners.
 
-Where used:
-
 - [Lab3/Ques2/app/src/main/java/com/example/lab3_q2/MainActivity.java](Lab3/Ques2/app/src/main/java/com/example/lab3_q2/MainActivity.java)
 - [Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java](Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java)
-
-Snippet:
+  Custom
+  [Lab5/Q2/app/src/main/java/com/example/lab5_q2/PlaceAdapter.java](Lab5/Q2/app/src/main/java/com/example/lab5_q2/PlaceAdapter.java)
+- [Lab3/Q1/app/src/main/java/com/example/lab3_q1/ImageAdapter.java](Lab3/Q1/app/src/main/java/com/example/lab3_q1/ImageAdapter.java)
 
 ```java
 ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
         android.R.layout.simple_list_item_1, sports);
 listView.setAdapter(adapter);
 
+//Custom Spinner Adapter
 
-//Custom Spiner Adapter
 public class MySpinnerAdapter extends ArrayAdapter<ItemModel> {
 
     Context context;
@@ -695,57 +512,23 @@ MySpinnerAdapter adapter = new MySpinnerAdapter(this, list);
 spinner.setAdapter(adapter);
 ```
 
-### Custom Adapter - `#custom-adapter`
-
-What it does:
-
-- Custom view binding for non-trivial row items.
-
-Where used:
-
-- [Lab5/Q2/app/src/main/java/com/example/lab5_q2/PlaceAdapter.java](Lab5/Q2/app/src/main/java/com/example/lab5_q2/PlaceAdapter.java)
-- [Lab3/Q1/app/src/main/java/com/example/lab3_q1/ImageAdapter.java](Lab3/Q1/app/src/main/java/com/example/lab3_q1/ImageAdapter.java)
-
-Snippet:
-
-```java
-if (convertView == null) {
-    convertView = LayoutInflater.from(context).inflate(R.layout.spinner_item, parent, false);
-}
-PlaceModel currentItem = placeList.get(position);
-imgPlace.setImageResource(currentItem.getImageResId());
-txtPlaceName.setText(currentItem.getPlaceName());
-```
-
 ### ListView - `#listview`
-
-What it does:
-
-- Scrollable vertical list.
-
-How used in solutions:
-
-- Sports list click handling and app list context-menu operations.
-
-Where used:
 
 - [Lab3/Ques2/app/src/main/java/com/example/lab3_q2/MainActivity.java](Lab3/Ques2/app/src/main/java/com/example/lab3_q2/MainActivity.java) - simple
 - [Lab7/Q1/app/src/main/res/layout/activity_main.xml](Lab7/Q1/app/src/main/res/layout/activity_main.xml)
 
-Snippet:
-
 ```java
-  listView = findViewById(R.id.listView);
+listView = findViewById(R.id.listViewItems);
 
-        String[] items = {"Apple", "Banana", "Mango", "Orange", "Grapes"};
+String[] items = {"Apple", "Banana", "Mango", "Orange", "Grapes"};
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                items
-        );
+ ArrayAdapter<String> adapter = new ArrayAdapter<>(
+    this,
+    android.R.layout.simple_list_item_1,
+    items
+);
 
-        listView.setAdapter(adapter);
+listView.setAdapter(adapter);
 listView.setOnItemClickListener((parent, view, position, id) -> {
     String selectedSport = sports[position];
     tvSelected.setText("Selected Sport: " + selectedSport);
@@ -798,7 +581,7 @@ public class AppAdapter extends BaseAdapter {
     }
 }
 //Step 3: Use it in Activity
-ListView listView = findViewById(R.id.listView);
+ListView listView = findViewById(R.id.listViewItems);
 
 AppAdapter adapter = new AppAdapter(this, appList);
 
@@ -809,41 +592,55 @@ listView.setAdapter(adapter);
   To click on listView Items
 
 ```java
-listViewTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+listViewItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         showOptionsDialog(position);
     }
 });
+
+ private void showOptionsDialog(int position) {
+        String selectedItem = items.get(position);
+
+        String[] options = {"View", "Delete", "Share"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose action for " + selectedItem);
+
+        builder.setItems(options, (dialog, which) -> {
+            if (which == 0) {
+                Toast.makeText(this, "View: " + selectedItem, Toast.LENGTH_SHORT).show();
+            } else if (which == 1) {
+                items.remove(position);
+                adapter.notifyDataSetChanged();
+                Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
+            } else if (which == 2) {
+                Toast.makeText(this, "Share: " + selectedItem, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
+    }
+}
 ```
 
-position → index in list (0,1,2…)
-id → listView Row ID
-
 ### GridView - `#gridview`
-
-What it does:
-
-- 2D grid of items.
-
-Where used:
 
 - [Lab3/Q1/app/src/main/res/layout/fragment_grid.xml](Lab3/Q1/app/src/main/res/layout/fragment_grid.xml)
 - [Lab3/Q1/app/src/main/java/com/example/lab3_q1/ImageAdapter.java](Lab3/Q1/app/src/main/java/com/example/lab3_q1/ImageAdapter.java)
 
-Snippet:
+```xml Put GridView in activity_main.xml
+<GridView
+    android:id="@+id/gridView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:numColumns="3"
+    android:horizontalSpacing="10dp"
+    android:verticalSpacing="10dp"
+    android:padding="10dp"/>
 
-```xml
-    <GridView
-        android:id="@+id/gridView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="3"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
-        android:padding="10dp"/>
-
-GRID ITEM
+grid_item.xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="100dp"
@@ -852,15 +649,15 @@ GRID ITEM
     android:background="#E0E0E0"
     android:padding="10dp">
 
-    <TextView
-        android:id="@+id/tvItem"
-        android:text="Item"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"/>
+<TextView
+    android:id="@+id/tvItem"
+    android:text="Item"
+    android:textSize="18sp"
+    android:textColor="@android:color/black"/>
 </LinearLayout>
 ```
 
-GRID ADAPTER
+GridAdapter.java
 
 ```java
 package com.example.lab3_q3;
@@ -912,24 +709,16 @@ public class GridAdapter extends BaseAdapter {
     }
 }
 
-MAIN
+//Connect to Adapter in MainActivity.java
 gridView = findViewById(R.id.gridView);
 
-        GridAdapter adapter = new GridAdapter(this, items);
-        gridView.setAdapter(adapter);
+GridAdapter adapter = new GridAdapter(this, items);
+gridView.setAdapter(adapter);
 ```
 
 ### TableLayout and TableRow - `#tablelayout` `#tablerow`
 
-What it does:
-
 - Renders row-column data in table form.
-
-How used in solutions:
-
-- Dynamic order summary table generation.
-
-Where used:
 
 - [Lab4/Q4/app/src/main/res/layout/activity_order_summary.xml](Lab4/Q4/app/src/main/res/layout/activity_order_summary.xml)
 - [Lab4/Q4/app/src/main/java/com/example/lab4_q4/OrderSummaryActivity.java](Lab4/Q4/app/src/main/java/com/example/lab4_q4/OrderSummaryActivity.java)
@@ -985,20 +774,14 @@ tableLayoutDetails.removeAllViews()
 
 ### DatePicker - `#datepicker`
 
-What it does:
-
 - Date selection via inline calendar/spinners.
 
-Where used:
-
 - [Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java](Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java)
-
-Snippet:
 
 ```java
 
   <DatePicker
-            android:id="@+id/datePickerTravel"
+            android:id="@+id/datePickerInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:calendarViewShown="false"
@@ -1006,110 +789,106 @@ Snippet:
             android:datePickerMode="spinner"/>
 
 
-int day = datePickerShow.getDayOfMonth();
-int month = datePickerShow.getMonth() + 1;
-int year = datePickerShow.getYear();
+int day = datePickerInput.getDayOfMonth();
+int month = datePickerInput.getMonth() + 1;
+int year = datePickerInput.getYear();
 String date = day + "/" + month + "/" + year;
 
-//To Reset to current date
-toggleTripType.setChecked(false);
+Calendar calendar = Calendar.getInstance();
+int currentYear = calendar.get(Calendar.YEAR);
+int currentMonth = calendar.get(Calendar.MONTH);
+int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
 
-        Calendar calendar = Calendar.getInstance();
-        int currentYear = calendar.get(Calendar.YEAR);
-        int currentMonth = calendar.get(Calendar.MONTH);
-        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+datePickerInput.updateDate(currentYear, currentMonth, currentDay);
 
-        datePickerTravel.updateDate(currentYear, currentMonth, currentDay);
+long today = calendar.getTimeInMillis();
 
-    long today = calendar.getTimeInMillis();
+calendar.add(Calendar.DAY_OF_MONTH, 20);
+long maxDate = calendar.getTimeInMillis();
 
-        calendar.add(Calendar.DAY_OF_MONTH, 20);
-        long maxDate = calendar.getTimeInMillis();
+datePicker.setMinDate(today);
+datePicker.setMaxDate(maxDate);
 
-        datePicker.setMinDate(today);
-        datePicker.setMaxDate(maxDate);
+calendar.getActualMaximum(Calendar.DAY_OF_MONTH));// max day in month
 
-          calendar.getActualMaximum(Calendar.DAY_OF_MONTH));// max day in month
-
-         int day = calendar.get(Calendar.DAY_OF_WEEK);
+int day = calendar.get(Calendar.DAY_OF_WEEK);
 if(day == Calendar.SATURDAY //weekend
 
 ```
 
 ### TimePicker - `#timepicker`
 
-What it does:
-
-- Time selection and change callbacks.
-
-Where used:
-
 - [Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java](Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java)
-
-Snippet:
 
 ```java
 
  <TimePicker
-                android:id="@+id/timePickerShow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp" />
+        android:id="@+id/timePickerInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
 
-
-timePickerShow.setOnTimeChangedListener((view, hourOfDay, minute) -> {
+timePickerInput.setIs24HourView(true);   // 24h display
+// timePickerInput.setIs24HourView(false); // 12h display
+timePickerInput.setOnTimeChangedListener((view, hourOfDay, minute) -> {
     checkPremiumBookingRule();
 });
 
 int hour, minute;
-            if (android.os.Build.VERSION.SDK_INT >= 23) {
-                hour = timePickerShow.getHour();
-                minute = timePickerShow.getMinute();
-            } else {
-                hour = timePickerShow.getCurrentHour();
-                minute = timePickerShow.getCurrentMinute();
-            }
+    if (android.os.Build.VERSION.SDK_INT >= 23) {
+        hour = timePickerInput.getHour();
+        minute = timePickerInput.getMinute();
+    } else {
+        hour = timePickerInput.getCurrentHour();
+        minute = timePickerInput.getCurrentMinute();
+     }
 
- String time = String.format("%02d:%02d", hour, minute);
+String time = String.format("%02d:%02d", hour, minute);
 
- //Reset Time
- int hour = calendar.get(Calendar.HOUR_OF_DAY); // hour in 24 hour system
-        int minute = calendar.get(Calendar.MINUTE);
+ //Set Time
+int hour = calendar.get(Calendar.HOUR_OF_DAY); // hour in 24 hour system
+int minute = calendar.get(Calendar.MINUTE);
 
-        if (android.os.Build.VERSION.SDK_INT >= 23) {
-            timePickerShow.setHour(hour);
-            timePickerShow.setMinute(minute);
-        } else {
-            timePickerShow.setCurrentHour(hour);
-            timePickerShow.setCurrentMinute(minute);
-        }
+if (android.os.Build.VERSION.SDK_INT >= 23) {
+    timePickerInput.setHour(hour);
+    timePickerInput.setMinute(minute);
+    } else {
+    timePickerInput.setCurrentHour(hour);
+    timePickerInput.setCurrentMinute(minute);
+}
+
+//Set Min Max
+//You enforce limits manually in listener by comparing selected total minutes.
+//If invalid, show toast and reset to nearest allowed value.
+final int minMinutes = 9 * 60;   // 09:00
+final int maxMinutes = 18 * 60;  // 18:00
+
+timePickerInput.setOnTimeChangedListener((view, h, m) -> {
+    int selected = h * 60 + m;
+
 
 ```
 
-What more you can do:
-
-- Toggle 24-hour/12-hour mode based on use-case.
-
 ### Toolbar - `#toolbar`
 
-What it does:
-
 - Replaces default action bar; hosts menu actions.
-
-Where used:
 
 - [Lab7/Q3/app/src/main/res/layout/activity_main.xml](Lab7/Q3/app/src/main/res/layout/activity_main.xml)
 - [Lab7/Q3/app/src/main/java/com/example/lab7_q3/MainActivity.java](Lab7/Q3/app/src/main/java/com/example/lab7_q3/MainActivity.java)
 
 Snippet:
 
-```java
+```java In themes.xml
 <style name="Theme.MyApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
     <!-- your colors -->
 </style>
 
+IN MainActivity
 Toolbar toolbar = findViewById(R.id.toolbar);
 setSupportActionBar(toolbar);
+getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+Option Menu...
+
 IN ACTIVITY_MAIN OR CUSTOM TOOLBAR
 <androidx.appcompat.widget.Toolbar
     android:id="@+id/toolbar"
@@ -1122,17 +901,10 @@ IN ACTIVITY_MAIN OR CUSTOM TOOLBAR
 
 ### TabLayout + ViewPager2 + FragmentStateAdapter - `#tabs` `#viewpager2` `#fragment`
 
-What it does:
-
 - Multi-screen swipeable UI with tab headers.
-
-Where used:
-
 - [Lab3/Q1/app/src/main/java/com/example/lab3_q1/MainActivity.java](Lab3/Q1/app/src/main/java/com/example/lab3_q1/MainActivity.java)
 - [Lab3/Q1/app/src/main/java/com/example/lab3_q1/ViewPagerAdapter.java](Lab3/Q1/app/src/main/java/com/example/lab3_q1/ViewPagerAdapter.java)
 - [Lab3/Q3/app/src/main/java/com/example/lab3_q3/NewsPagerAdapter.java](Lab3/Q3/app/src/main/java/com/example/lab3_q3/NewsPagerAdapter.java)
-
-Snippet:
 
 ```xml
  <com.google.android.material.tabs.TabLayout
@@ -1206,7 +978,7 @@ new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             break;
     }
 }).attach();
-
+//FirstFragment.java
 import androidx.fragment.app.Fragment;
 
 public class FirstFragment extends Fragment {
@@ -1228,22 +1000,16 @@ public class FirstFragment extends Fragment {
 
 ### Intent (Explicit) - `#intent-explicit`
 
-What it does:
-
-- Navigates to another activity inside the app and sends typed data.
-
-Where used:
-
 - [Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java](Lab5/Q3/app/src/main/java/com/example/lab5_q3/MainActivity.java)
 - [Lab4/Q4/app/src/main/java/com/example/lab4_q4/MainActivity.java](Lab4/Q4/app/src/main/java/com/example/lab4_q4/MainActivity.java)
-
-Snippet:
 
 ```java
 // Sender Activity (MainActivity)
 Intent intent = new Intent(MainActivity.this, BookingSummaryActivity.class);
 intent.putExtra("movie", movie);
 intent.putExtra("availableSeats", availableSeats);
+intent.putStringArrayListExtra("items", items);
+intent.putIntegerArrayListExtra("costs", costs);
 startActivity(intent);
 
 // Receiver Activity (BookingSummaryActivity)
@@ -1255,19 +1021,21 @@ ArrayList<Integer> costs = getIntent().getIntegerArrayListExtra("costs");
 
 <activity android:name=".ResultActivity"/>
 Manifest
-TextView tvMovie = findViewById(R.id.tvMovie);
-TextView tvSeats = findViewById(R.id.tvSeats);
-tvMovie.setText("Movie: " + selectedMovie);
-tvSeats.setText("Available Seats: " + seats);
+TextView tvFieldOne = findViewById(R.id.tvFieldOne);
+TextView tvFieldTwo = findViewById(R.id.tvFieldTwo);
+tvFieldOne.setText("Movie: " + selectedMovie);
+tvFieldTwo.setText("Available Seats: " + seats);
 
-btnEdit.setOnClickListener(new View.OnClickListener() {
+BACK BUTTON CODE
+
+btnEditEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish(); // go back to MainActivity for editing
             }
         });
 
-btnBackHome.setOnClickListener(new View.OnClickListener() { // back home
+btnBackToHome.setOnClickListener(new View.OnClickListener() { // back home
     @Override
         public void onClick(View view) {
 
@@ -1283,15 +1051,8 @@ btnBackHome.setOnClickListener(new View.OnClickListener() { // back home
 
 ### Intent (Implicit URL) - `#intent-implicit`
 
-What it does:
-
 - Opens browser for provided URL.
-
-Where used:
-
 - [Lab2/Q4/app/src/main/java/com/example/lab2_q4/MainActivity.java](Lab2/Q4/app/src/main/java/com/example/lab2_q4/MainActivity.java)
-
-Snippet:
 
 ```java
 if (!url.startsWith("http://") && !url.startsWith("https://")) {
@@ -1303,12 +1064,6 @@ startActivity(intent);
 ```
 
 ### Toast and Custom Toast - `#toast` `#custom-toast`
-
-What it does:
-
-- Quick user feedback.
-
-Where used:
 
 - [Lab2/Q1/app/src/main/java/com/example/lab2_q1/MainActivity.java](Lab2/Q1/app/src/main/java/com/example/lab2_q1/MainActivity.java)
 - [Lab4/Q1/app/src/main/java/com/example/lab4_q1/MainActivity.java](Lab4/Q1/app/src/main/java/com/example/lab4_q1/MainActivity.java)
@@ -1324,7 +1079,7 @@ toast.setView(layout);
 toast.show();
 ```
 
-Snippet (Custom Toast XML - `res/layout/custom_toast.xml`):
+Custom Toast XML - `res/layout/custom_toast.xml`):
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -1354,7 +1109,7 @@ Snippet (Custom Toast XML - `res/layout/custom_toast.xml`):
 </LinearLayout>
 ```
 
-Snippet (Custom Toast Java):
+Custom Toast Java:
 
 ```java
 
@@ -1376,16 +1131,10 @@ toast.show();
 
 ### Options Menu - `#menu-options`
 
-What it does:
-
 - Shows activity-level actions in the app bar overflow/options area.
-
-Where used:
 
 - [Lab6/Q1/app/src/main/java/com/example/lab6_q1/MainActivity.java](Lab6/Q1/app/src/main/java/com/example/lab6_q1/MainActivity.java)
 - Q3 - sorting searching etc
-
-Snippet:
 
 ```java
 @Override
@@ -1397,7 +1146,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 @Override
 public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     if (item.getItemId() == R.id.menu_about) {
-        tvTitle.setText("About Us");
+        tvHeading.setText("About Us");
         return true;
     }
     return super.onOptionsItemSelected(item);
@@ -1418,11 +1167,7 @@ public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
 ### Context Menu - `#menu-context`
 
-What it does:
-
 - Shows item-level actions on long-press for a selected list item.
-
-Where used:
 
 - [Lab7/Q1/app/src/main/java/com/example/lab7_q1/MainActivity.java](Lab7/Q1/app/src/main/java/com/example/lab7_q1/MainActivity.java)
 
@@ -1443,7 +1188,7 @@ Snippet (Layout XML - `activity_main.xml`):
         android:layout_marginBottom="8dp" />
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/listViewItems"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -1460,7 +1205,13 @@ Snippet (Menu XML - `res/menu/context_menu_app.xml`):
 
     <item
         android:id="@+id/menu_delete"
-        android:title="Delete" />
+        android:title="Delete"
+        android:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_share"
+        android:title="Share"
+        android:showAsAction="never"  />
 </menu>
 ```
 
@@ -1477,7 +1228,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = findViewById(R.id.listView);
+        listView = findViewById(R.id.listViewItems);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
@@ -1518,8 +1269,6 @@ public class MainActivity extends AppCompatActivity {
 
 ### Contextual Action Mode - `#actionmode` `#contextual-action-mode`
 
-What it does:
-
 - This mode is a system implementation of ActionMode that displays a contextual action bar at the top of the screen with action items that affect the selected item(s).
 - When this mode is active, users can perform an action on multiple items at once (if your app allows it).
 - This provides a contextual action bar at the top for multiple item actions.
@@ -1528,7 +1277,7 @@ Snippet (Layout XML):
 
 ```xml
 <ListView
-    android:id="@+id/listView"
+    android:id="@+id/listViewItems"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:choiceMode="multipleModal" />
@@ -1554,7 +1303,7 @@ Snippet (Menu XML - `res/menu/cab_menu.xml`):
 Snippet (Java):
 
 ```java
-ListView listView = findViewById(R.id.listView);
+ListView listView = findViewById(R.id.listViewItems);
 
 ArrayList<String> items = new ArrayList<>(Arrays.asList(
         "Item 1", "Item 2", "Item 3", "Item 4", "Item 5"
@@ -1665,12 +1414,6 @@ ActionMode.Callback cabCallback = new ActionMode.Callback() {
 
 ### Popup Menu - `#menu-popup`
 
-What it does:
-
-- Shows quick actions anchored to a specific view (like an icon button).
-
-Where used:
-
 - [Lab7/Q2/app/src/main/java/com/example/lab7_q2/MainActivity.java](Lab7/Q2/app/src/main/java/com/example/lab7_q2/MainActivity.java)
 
 Snippet (Layout XML - `activity_main.xml`):
@@ -1684,7 +1427,7 @@ Snippet (Layout XML - `activity_main.xml`):
     android:padding="16dp">
 
     <ImageView
-        android:id="@+id/mainImage"
+        android:id="@+id/imageViewMain"
         android:layout_width="220dp"
         android:layout_height="220dp"
         android:src="@drawable/image1"
@@ -1692,7 +1435,7 @@ Snippet (Layout XML - `activity_main.xml`):
         android:contentDescription="Selected image" />
 
     <ImageView
-        android:id="@+id/menuIcon"
+        android:id="@+id/imageViewMenu"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
@@ -1707,15 +1450,15 @@ Snippet (Menu XML - `res/menu/pop_up_menu.xml`):
 ```xml
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/image1"
+        android:id="@+id/menu_item_1"
         android:title="Image 1" />
 
     <item
-        android:id="@+id/image2"
+        android:id="@+id/menu_item_2"
         android:title="Image 2" />
 
     <item
-        android:id="@+id/image3"
+        android:id="@+id/menu_item_3"
         android:title="Image 3" />
 </menu>
 ```
@@ -1725,32 +1468,32 @@ Snippet (Java - `MainActivity.java`):
 ```java
 public class MainActivity extends AppCompatActivity {
 
-    private ImageView mainImage;
-    private ImageView menuIcon;
+    private ImageView imageViewMain;
+    private ImageView imageViewMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainImage = findViewById(R.id.mainImage);
-        menuIcon = findViewById(R.id.menuIcon);
+        imageViewMain = findViewById(R.id.imageViewMain);
+        imageViewMenu = findViewById(R.id.imageViewMenu);
 
-        menuIcon.setOnClickListener(view -> {
-            PopupMenu popupMenu = new PopupMenu(MainActivity.this, menuIcon);
+        imageViewMenu.setOnClickListener(view -> {
+            PopupMenu popupMenu = new PopupMenu(MainActivity.this, imageViewMenu);
             popupMenu.getMenuInflater().inflate(R.menu.pop_up_menu, popupMenu.getMenu());
 
             popupMenu.setOnMenuItemClickListener(item -> {
-                if (item.getItemId() == R.id.image1) {
-                    mainImage.setImageResource(R.drawable.image1);
+                if (item.getItemId() == R.id.menu_item_1) {
+                    imageViewMain.setImageResource(R.drawable.image1);
                     return true;
                 }
-                if (item.getItemId() == R.id.image2) {
-                    mainImage.setImageResource(R.drawable.image2);
+                if (item.getItemId() == R.id.menu_item_2) {
+                    imageViewMain.setImageResource(R.drawable.image2);
                     return true;
                 }
-                if (item.getItemId() == R.id.image3) {
-                    mainImage.setImageResource(R.drawable.image3);
+                if (item.getItemId() == R.id.menu_item_3) {
+                    imageViewMain.setImageResource(R.drawable.image3);
                     return true;
                 }
                 return false;
@@ -1786,12 +1529,7 @@ builder.show();
 
 ### SpannableString and BackgroundColorSpan - `#spans`
 
-What it does:
-
 - Highlights matched or selected text ranges.
-
-Where used:
-
 - [Lab7/Q3/app/src/main/java/com/example/lab7_q3/MainActivity.java](Lab7/Q3/app/src/main/java/com/example/lab7_q3/MainActivity.java)
 
 Snippet:
@@ -1805,12 +1543,7 @@ tvContent.setText(spannableString);
 
 ### Activity Lifecycle - `#activity-lifecycle`
 
-What it does:
-
 - Defines activity state transitions (`onStart`, `onResume`, etc.).
-
-Where used:
-
 - [Lab2/Q1/app/src/main/java/com/example/lab2_q1/MainActivity.java](Lab2/Q1/app/src/main/java/com/example/lab2_q1/MainActivity.java)
 
 Snippet:
@@ -1823,76 +1556,153 @@ protected void onStart() {
 }
 ```
 
-What more you can do:
+### SharedPreferences - `#sharedpreferences`
 
-- Save transient UI state in `onSaveInstanceState`.
+- Stores small key-value app data locally (no database needed).
+  stores name/email locally on `onPause()` and reloads on app open.
 
-## 5) Lab 8 Component-Wise Usage + Links
+- [Lab8/Q5/app/src/main/java/com/example/lab8_q5/MainActivity.java](Lab8/Q5/app/src/main/java/com/example/lab8_q5/MainActivity.java)
+- [Lab8/Q5/app/src/main/res/layout/activity_main.xml](Lab8/Q5/app/src/main/res/layout/activity_main.xml)
 
-Note:
+```java
+    SharedPreferences sharedPreferences;
+    public static final String PREF_NAME = "MyPrefs";
+    public static final String KEY_NAME = "name";
+    public static final String KEY_EMAIL = "email";
+    sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveData();   // Save when app is closed/minimized
+    }
 
-- Lab8 `Q4` folder is not present in the current workspace snapshot.
-- Q4 is included here as a conceptual exam section: view SQLite table data and use a prebuilt SQLite database.
-- Section 5 only includes Lab8 add-ons not already covered in Section 2.
+    private void saveData() {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            editor.putString(KEY_NAME, etName.getText().toString());
+            editor.putString(KEY_EMAIL, etEmail.getText().toString());
+
+            editor.apply(); // or commit()
+        }
+
+    private void loadData() {
+        String name = sharedPreferences.getString(KEY_NAME, "");
+        String email = sharedPreferences.getString(KEY_EMAIL, "");
+
+        etName.setText(name);
+        etEmail.setText(email);
+    }
+```
 
 ### SQLite Flow (DB + List + Table) - `#sqlite` `#view-table`
-
-What it does:
-
-- Shows full exam flow: create DB, insert data, view list, and show selected row in table format.
-
-How used in Lab 8:
 
 - Q1/Q2/Q3 store data in SQLite.
 - Q1/Q3 view records in `ListView`.
 - Q3 displays selected record fields in `TableLayout`.
-
-Where used:
 
 - [Lab8/Q1/app/src/main/java/com/example/lab8_q1/MainActivity.java](Lab8/Q1/app/src/main/java/com/example/lab8_q1/MainActivity.java)
 - [Lab8/Q1/app/src/main/java/com/example/lab8_q1/DatabaseHelper.java](Lab8/Q1/app/src/main/java/com/example/lab8_q1/DatabaseHelper.java)
 - [Lab8/Q3/app/src/main/java/com/example/lab8_3/MainActivity.java](Lab8/Q3/app/src/main/java/com/example/lab8_3/MainActivity.java)
 - [Lab8/Q3/app/src/main/java/com/example/lab8_3/DatabaseHelper.java](Lab8/Q3/app/src/main/java/com/example/lab8_3/DatabaseHelper.java)
 
-Snippet:
-
-java
-
-Copy
-
 ```java
-public class DatabaseHelper extends SQLiteOpenHelper {    public DatabaseHelper(Context context) {        super(context, "MovieReviewDB", null, 1);    }    @Override    public void onCreate(SQLiteDatabase db) {        db.execSQL("CREATE TABLE movies (id INTEGER PRIMARY KEY AUTOINCREMENT, movie_name TEXT, movie_year TEXT, movie_rating INTEGER)");    }    @Override    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {        db.execSQL("DROP TABLE IF EXISTS movies");        onCreate(db);    }    public long insertMovie(String name, String year, int rating) {        SQLiteDatabase db = getWritableDatabase();        ContentValues values = new ContentValues();        values.put("movie_name", name);        values.put("movie_year", year);        values.put("movie_rating", rating);        return db.insert("movies", null, values);    }    public Cursor getAllMovies() {        return getReadableDatabase().rawQuery("SELECT * FROM movies", null);    }    public Cursor getMovieById(int id) {        return getReadableDatabase().rawQuery("SELECT * FROM movies WHERE id = ?", new String[]{String.valueOf(id)});    }}// Activity usage (ListView + TableLayout)DatabaseHelper db = new DatabaseHelper(this);db.insertMovie("Inception", "2010", 5);ArrayList<String> names = new ArrayList<>();ArrayList<Integer> ids = new ArrayList<>();Cursor all = db.getAllMovies();while (all.moveToNext()) {    ids.add(all.getInt(all.getColumnIndexOrThrow("id")));    names.add(all.getString(all.getColumnIndexOrThrow("movie_name")));}all.close();listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, names));listView.setOnItemClickListener((parent, view, position, itemId) -> {    Cursor one = db.getMovieById(ids.get(position));    if (one.moveToFirst()) {        tableLayout.removeAllViews();        TableRow row1 = new TableRow(this);        TextView k1 = new TextView(this);        TextView v1 = new TextView(this);        k1.setText("Year");        v1.setText(one.getString(one.getColumnIndexOrThrow("movie_year")));        row1.addView(k1);        row1.addView(v1);        tableLayout.addView(row1);    }    one.close();});
+ private DatabaseHelper db;
+ private ListView listView;
+ private TableLayout tableLayout;
+
+ private final ArrayList<String> names = new ArrayList<>();
+ private final ArrayList<Integer> ids = new ArrayList<>();
+ private ArrayAdapter<String> adapter;
+
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+     super.onCreate(savedInstanceState);
+     setContentView(R.layout.activity_main);
+
+     listView = findViewById(R.id.listViewItems);
+     tableLayout = findViewById(R.id.tableLayout);
+
+     db = new DatabaseHelper(this);
+
+     // Sample insert
+     db.insertMovie("Inception", "2010", 5);
+
+     loadMovies();
+
+     listView.setOnItemClickListener((parent, view, position, itemId) -> {
+         showMovieDetails(ids.get(position));
+     });
+ }
+
+ private void loadMovies() {
+     names.clear();
+     ids.clear();
+
+     Cursor c = db.getAllMovies();
+     try {
+         while (c.moveToNext()) {
+             ids.add(c.getInt(c.getColumnIndexOrThrow(DatabaseHelper.COL_ID)));
+             names.add(c.getString(c.getColumnIndexOrThrow(DatabaseHelper.COL_NAME)));
+         }
+     } finally {
+         c.close();
+     }
+
+     adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, names);
+     listView.setAdapter(adapter);
+ }
+
+ private void showMovieDetails(int movieId) {
+     Cursor c = db.getMovieById(movieId);
+     try {
+         if (c.moveToFirst()) {
+             tableLayout.removeAllViews();
+
+             addRow("Name", c.getString(c.getColumnIndexOrThrow(DatabaseHelper.COL_NAME)));
+             addRow("Year", c.getString(c.getColumnIndexOrThrow(DatabaseHelper.COL_YEAR)));
+             addRow("Rating", String.valueOf(c.getInt(c.getColumnIndexOrThrow(DatabaseHelper.COL_RATING))));
+         }
+     } finally {
+         c.close();
+     }
+ }
+
+ private void addRow(String key, String value) {
+     TableRow row = new TableRow(this);
+
+     TextView k = new TextView(this);
+     TextView v = new TextView(this);
+
+     k.setText(key);
+     v.setText(value);
+
+     row.addView(k);
+     row.addView(v);
+
+     tableLayout.addView(row);
+ }
 ```
 
 ### Q4: View SQLite Table / Use Prebuilt DB - `#sqlite-q4` `#sqlite-prebuilt`
 
-What it does:
-
 - Shows how to read and display rows from a SQLite table.
 - Shows how to use a pre-made SQLite database file copied from `assets` into app database folder.
 
-How used in exams:
-
 - Option A: Your app creates DB using `SQLiteOpenHelper` then reads table with `Cursor`.
 - Option B: Your app ships with prebuilt `.db` file and opens it with `SQLiteDatabase.openDatabase(...)`.
-
-Where used (related in this workspace):
-
 - [Lab8/Q1/app/src/main/java/com/example/lab8_q1/DatabaseHelper.java](Lab8/Q1/app/src/main/java/com/example/lab8_q1/DatabaseHelper.java)
 - [Lab8/Q2/app/src/main/java/com/example/lab8_q2/DatabaseHelper.java](Lab8/Q2/app/src/main/java/com/example/lab8_q2/DatabaseHelper.java)
 - [Lab8/Q3/app/src/main/java/com/example/lab8_3/DatabaseHelper.java](Lab8/Q3/app/src/main/java/com/example/lab8_3/DatabaseHelper.java)
 
-Snippet (prebuilt DB + view table rows):
-
 ```java
 private static final String DB_NAME = "college.db";
 
-// 🔹 Step 1: Copy DB from assets → internal storage (if not exists)
+//  Step 1: Copy DB from asset internal storage (if not exists)
 private SQLiteDatabase openPrebuiltDb(Context context) throws IOException {
 
     File dbFile = context.getDatabasePath(DB_NAME);
 
-    // If DB doesn't exist → copy from assets
+
     if (!dbFile.exists()) {
 
         dbFile.getParentFile().mkdirs();
@@ -1921,7 +1731,7 @@ private SQLiteDatabase openPrebuiltDb(Context context) throws IOException {
 }
 
 
-// 🔹 Step 2: Load data into ListView
+//  Step 2: Load data into ListView
 private void loadStudentsToList(SQLiteDatabase db, ListView listView) {
 
     ArrayList<String> rows = new ArrayList<>();
@@ -1953,85 +1763,11 @@ private void loadStudentsToList(SQLiteDatabase db, ListView listView) {
 
 ### SQLiteOpenHelper - `#sqliteopenhelper`
 
-What it does:
-
-- Creates local database, tables, and provides CRUD operations.
-
-How used in Lab 8:
-
-- Q1: `tasks` table for task manager CRUD.
-- Q2: `grocery_items` table for item + cost.
-- Q3: `movies` table for movie name, year, rating.
-
-Where used:
-
 - [Lab8/Q1/app/src/main/java/com/example/lab8_q1/DatabaseHelper.java](Lab8/Q1/app/src/main/java/com/example/lab8_q1/DatabaseHelper.java)
 - [Lab8/Q2/app/src/main/java/com/example/lab8_q2/DatabaseHelper.java](Lab8/Q2/app/src/main/java/com/example/lab8_q2/DatabaseHelper.java)
 - [Lab8/Q3/app/src/main/java/com/example/lab8_3/DatabaseHelper.java](Lab8/Q3/app/src/main/java/com/example/lab8_3/DatabaseHelper.java)
 
 Refer DatabaseHelper.md
-
-### SharedPreferences - `#sharedpreferences`
-
-What it does:
-
-- Stores small key-value app data locally (no database needed).
-
-How used in Lab 8:
-
-- Q5 stores name/email locally on `onPause()` and reloads on app open.
-
-Where used:
-
-- [Lab8/Q5/app/src/main/java/com/example/lab8_q5/MainActivity.java](Lab8/Q5/app/src/main/java/com/example/lab8_q5/MainActivity.java)
-- [Lab8/Q5/app/src/main/res/layout/activity_main.xml](Lab8/Q5/app/src/main/res/layout/activity_main.xml)
-
-Snippet:
-
-```java
-    SharedPreferences sharedPreferences;
-    public static final String PREF_NAME = "MyPrefs";
-    public static final String KEY_NAME = "name";
-    public static final String KEY_EMAIL = "email";
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        saveData();   // Save when app is closed/minimized
-    }
-
-    private void saveData() {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-
-            editor.putString(KEY_NAME, etName.getText().toString());
-            editor.putString(KEY_EMAIL, etEmail.getText().toString());
-
-            editor.apply(); // or commit()
-        }
-
-    private void loadData() {
-        String name = sharedPreferences.getString(KEY_NAME, "");
-        String email = sharedPreferences.getString(KEY_EMAIL, "");
-
-        etName.setText(name);
-        etEmail.setText(email);
-    }
-```
-
-### End-to-end example reference
-
-- Layout + navigation combo:
-  [Lab2/Q3/app/src/main/res/layout/activity_linear.xml](Lab2/Q3/app/src/main/res/layout/activity_linear.xml)
-  [Lab2/Q3/app/src/main/res/layout/activity_relative.xml](Lab2/Q3/app/src/main/res/layout/activity_relative.xml)
-  [Lab2/Q3/app/src/main/java/com/example/lab2_q3/MainActivity.java](Lab2/Q3/app/src/main/java/com/example/lab2_q3/MainActivity.java)
-
-```java
-Button btn = findViewById(R.id.btnOpenRelative);
-btn.setOnClickListener(v -> {
-    Intent intent = new Intent(MainActivity.this, RelativeActivity.class);
-    startActivity(intent);
-});
-```
 
 ## 6) Common Mistakes Checklist (Before Running)
 
@@ -2073,7 +1809,3 @@ btn.setOnClickListener(v -> {
 - `Lab7/Q1/app/src/main/java/com/example/lab7_q1/AppAdapter.java`
 - `Lab7/Q2/app/src/main/java/com/example/lab7_q2/MainActivity.java`
 - `Lab7/Q3/app/src/main/java/com/example/lab7_q3/MainActivity.java`
-
----
-
-Last updated from current repo state and lab notes in this workspace.
